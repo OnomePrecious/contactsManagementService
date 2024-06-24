@@ -17,7 +17,9 @@ public class UserController {
 
     @PostMapping("/Register")
     public ResponseEntity<?> RegisterUser(@RequestBody RegisterRequest request){
-
+    try{
+        var result = userService.registerUser(request);
+    }
 
     }
 
