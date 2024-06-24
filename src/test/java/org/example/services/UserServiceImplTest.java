@@ -83,4 +83,6 @@ class UserServiceImplTest {
         assertThrows(UsernameAlreadyExistsException.class, ()-> userService.registerUser(request1));
 
     }
+
+    @Test
 }

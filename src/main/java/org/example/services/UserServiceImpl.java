@@ -26,6 +26,11 @@ public class UserServiceImpl implements UserService{
         return mapUserToRegisterResponse(user);
     }
 
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
     private boolean isValidUser(User user) {
         return userRepository.findUserByUsername(user.getUsername()) == null;
     }
