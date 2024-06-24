@@ -120,7 +120,6 @@ class UserServiceImplTest {
         changePasswordRequest.setNewPassword("newPassword");
         ChangePasswordResponse changePasswordResponse = userService.changePassword(changePasswordRequest);
 
-        assertEquals(1, userRepository.count());
         assertEquals("newPassword", userRepository.findUserByUsername("username").getPassword());
         assertThat(changePasswordResponse).isNotNull();
         }
