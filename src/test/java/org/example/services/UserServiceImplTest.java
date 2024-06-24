@@ -14,5 +14,7 @@ class UserServiceImplTest {
         request.setLastName("Onome");
         request.setUsername("username");
         request.setPassword("password");
+        request.setEmail("precious@gmail.com");
+        request.setPhoneNumber(123);
     }
 }
