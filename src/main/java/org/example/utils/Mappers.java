@@ -15,4 +15,10 @@ public class Mappers {
         user.setEmail(request.getEmail());
 
     }
+
+    public static RegisterResponse mapUserToRegisterResponse(User user){
+        RegisterResponse response = new RegisterResponse();
+        response.setUsername(user.getUsername());
+        return response;
+    }
 }
