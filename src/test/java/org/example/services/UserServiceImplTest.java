@@ -96,7 +96,7 @@ class UserServiceImplTest {
 
         userService.registerUser(request);
 
-        assertEquals("user", userService.findUserByUsername("username1"));
+        assertEquals("username", userService.findUserByUsername("username"));
 
     }
 }
