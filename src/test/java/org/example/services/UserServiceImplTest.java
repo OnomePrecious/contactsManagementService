@@ -85,4 +85,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    public void testThatICanFindUserByUsername(){
+
+    }
 }
