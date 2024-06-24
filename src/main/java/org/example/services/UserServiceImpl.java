@@ -6,6 +6,7 @@ import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.ChangePasswordResponse;
 import org.example.dtos.response.RegisterResponse;
+import org.example.exceptions.UserNotFoundException;
 import org.example.exceptions.UsernameAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ChangePasswordResponse changePassword(ChangePasswordRequest changePasswordRequest) {
+        User user = userRepository.findUserByUsername(changePasswordRequest.getUsername());
+        if(user == null) throw new UserNotFoundException("You must be a registered user");
         return null;
     }
 
