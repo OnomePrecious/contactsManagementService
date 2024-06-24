@@ -24,9 +24,10 @@ public class Mappers {
         return response;
     }
 
-    public static void mapChangePasswordRequestToUser(ChangePasswordRequest changePasswordRequest, User user){
+    public static User mapChangePasswordRequestToUser(ChangePasswordRequest changePasswordRequest, User user){
         user.setPassword(changePasswordRequest.getPassword());
         user.setUsername(changePasswordRequest.getUsername());
+        return user;
     }
 
     public static ChangePasswordResponse mapUserToChangePasswordResponse(User user){

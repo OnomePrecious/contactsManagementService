@@ -1,8 +1,10 @@
 package org.example.services;
 
+import org.example.data.models.User;
 import org.example.data.repositories.UserRepository;
 import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.RegisterRequest;
+import org.example.dtos.response.ChangePasswordResponse;
 import org.example.dtos.response.RegisterResponse;
 import org.example.exceptions.UsernameAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
@@ -114,11 +116,12 @@ class UserServiceImplTest {
 
         ChangePasswordRequest changePasswordRequest = new ChangePasswordRequest();
         changePasswordRequest.setUsername("username");
-        changePasswordRequest.setOldPassword("password");
+        changePasswordRequest.setPassword("password");
         changePasswordRequest.setNewPassword("newPassword");
-        userService.changePassword(changePasswordRequest);
+        ChangePasswordResponse changePasswordResponse = userService.changePassword(changePasswordRequest);
 
-        assertEquals("username", userService.findUserByUsername("username").getUsername());
         assertEquals(1, userRepository.count());
+        assertEquals("newPassword", userRepository.findUserByUsername("username").getPassword());
+        assertThat(changePasswordResponse).isNotNull();
         }
     }
