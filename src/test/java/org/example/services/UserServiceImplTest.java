@@ -86,6 +86,17 @@ class UserServiceImplTest {
 
     @Test
     public void testThatICanFindUserByUsername(){
+        RegisterRequest request = new RegisterRequest();
+        request.setFirstName("Precious");
+        request.setLastName("Onome");
+        request.setUsername("username");
+        request.setPassword("password");
+        request.setEmail("precious@gmail.com");
+        request.setPhoneNumber(123);
+
+        userService.registerUser(request);
+
+        assertEquals("user", userService.findUserByUsername("username1"));
 
     }
 }
