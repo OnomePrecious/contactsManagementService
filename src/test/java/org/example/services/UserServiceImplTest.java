@@ -112,12 +112,13 @@ class UserServiceImplTest {
         request.setPhoneNumber(123);
         userService.registerUser(request);
 
-        ChangePasswordRequest changePassword = new ChangePasswordRequest();
-        changePassword.setUsername("username");
-        changePassword.setOldPassword("password");
-        changePassword.setNewPassword("newPassword");
-        userService.changePassword(changePassword);
+        ChangePasswordRequest changePasswordRequest = new ChangePasswordRequest();
+        changePasswordRequest.setUsername("username");
+        changePasswordRequest.setOldPassword("password");
+        changePasswordRequest.setNewPassword("newPassword");
+        userService.changePassword(changePasswordRequest);
 
         assertEquals("username", userService.findUserByUsername("username").getUsername());
+        assertEquals(1, userRepository.count());
         }
     }

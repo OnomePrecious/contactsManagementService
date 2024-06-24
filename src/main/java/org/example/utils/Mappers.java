@@ -25,7 +25,7 @@ public class Mappers {
     }
 
     public static void mapChangePasswordRequestToUser(ChangePasswordRequest changePasswordRequest, User user){
-        user.setPassword(changePasswordRequest.getOldPassword());
+        user.setPassword(changePasswordRequest.getPassword());
         user.setUsername(changePasswordRequest.getUsername());
     }
 
