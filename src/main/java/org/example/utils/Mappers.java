@@ -1,7 +1,9 @@
 package org.example.utils;
 
 import org.example.data.models.User;
+import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.RegisterRequest;
+import org.example.dtos.response.ChangePasswordResponse;
 import org.example.dtos.response.RegisterResponse;
 
 public class Mappers {
@@ -22,5 +24,14 @@ public class Mappers {
         return response;
     }
 
-    public static void mapChangePasswordRequestToUser
+    public static void mapChangePasswordRequestToUser(ChangePasswordRequest changePasswordRequest, User user){
+        user.setPassword(changePasswordRequest.getOldPassword());
+        user.setUsername(changePasswordRequest.getUsername());
+    }
+
+    public static ChangePasswordResponse mapUserToChangePasswordResponse(User user){
+        ChangePasswordResponse response = new ChangePasswordResponse();
+        response.setUsername(user.getUsername());
+        return response;
+    }
 }

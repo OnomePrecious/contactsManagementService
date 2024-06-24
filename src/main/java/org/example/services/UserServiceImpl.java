@@ -2,7 +2,9 @@ package org.example.services;
 
 import org.example.data.models.User;
 import org.example.data.repositories.UserRepository;
+import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.RegisterRequest;
+import org.example.dtos.response.ChangePasswordResponse;
 import org.example.dtos.response.RegisterResponse;
 import org.example.exceptions.UsernameAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public ChangePasswordResponse changePassword(ChangePasswordRequest changePasswordRequest) {
+        return null;
     }
 
     private boolean isValidUser(User user) {
