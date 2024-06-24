@@ -121,5 +121,6 @@ class UserServiceImplTest {
          userService.changePassword(changePasswordRequest);
 
         assertEquals("username", userRepository.findUserByUsername("username").getUsername());
-        }
+
+    }
     }
