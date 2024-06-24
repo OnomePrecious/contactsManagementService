@@ -23,6 +23,8 @@ public class UserController {
     try{
         var result = userService.registerUser(request);
         return new ResponseEntity<>(new ApiResponse(true, result), CREATED);
+    }catch(Exception e){
+        return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), CREATED);
     }
 
     }
