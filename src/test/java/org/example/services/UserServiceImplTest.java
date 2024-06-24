@@ -110,10 +110,14 @@ class UserServiceImplTest {
         request.setPassword("password");
         request.setEmail("precious@gmail.com");
         request.setPhoneNumber(123);
-
         userService.registerUser(request);
-        ChangePasswordRequest changePassword = new ChangePasswordRequest();
 
+        ChangePasswordRequest changePassword = new ChangePasswordRequest();
+        changePassword.setUsername("username");
+        changePassword.setOldPassword("password");
+        changePassword.setNewPassword("newPassword");
+        userService.changePassword(changePassword);
+
+        assertEquals("username", userService.findUserByUsername("username").getUsername());
         }
     }
-}
