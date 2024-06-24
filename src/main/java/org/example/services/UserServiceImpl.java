@@ -11,8 +11,7 @@ import org.example.exceptions.UsernameAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static org.example.utils.Mappers.mapUserToRegisterRequest;
-import static org.example.utils.Mappers.mapUserToRegisterResponse;
+import static org.example.utils.Mappers.*;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -38,6 +37,9 @@ public class UserServiceImpl implements UserService{
     public ChangePasswordResponse changePassword(ChangePasswordRequest changePasswordRequest) {
         User user = userRepository.findUserByUsername(changePasswordRequest.getUsername());
         if(user == null) throw new UserNotFoundException("You must be a registered user");
+        mapChangePasswordRequestToUser(changePasswordRequest, user);
+        userRepository.save(user);
+        mapUserToChangePasswordResponse(user);
         return null;
     }
 
