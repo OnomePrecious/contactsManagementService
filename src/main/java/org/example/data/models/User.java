@@ -11,4 +11,5 @@ public class User {
     private String password;
     private int phoneNumber;
     private String address;
+    private String email;
 }
