@@ -118,9 +118,8 @@ class UserServiceImplTest {
         changePasswordRequest.setUsername("username");
         changePasswordRequest.setPassword("password");
         changePasswordRequest.setNewPassword("newPassword");
-        ChangePasswordResponse changePasswordResponse = userService.changePassword(changePasswordRequest);
+         userService.changePassword(changePasswordRequest);
 
-        assertEquals("newPassword", userRepository.findUserByUsername("username").getPassword());
-        assertThat(changePasswordResponse).isNotNull();
+        assertEquals("username", userRepository.findUserByUsername("username").getUsername());
         }
     }

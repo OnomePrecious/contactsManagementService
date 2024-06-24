@@ -25,13 +25,15 @@ public class Mappers {
     }
 
     public static User mapChangePasswordRequestToUser(ChangePasswordRequest changePasswordRequest, User user){
-        user.setPassword(changePasswordRequest.getPassword());
         user.setUsername(changePasswordRequest.getUsername());
+        user.setPassword(changePasswordRequest.getPassword());
+
         return user;
     }
 
     public static ChangePasswordResponse mapUserToChangePasswordResponse(User user){
         ChangePasswordResponse response = new ChangePasswordResponse();
+        response.setMessage("password changed successfully");
         response.setUsername(user.getUsername());
         return response;
     }
