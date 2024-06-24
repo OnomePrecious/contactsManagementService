@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
@@ -24,7 +25,7 @@ public class UserController {
         var result = userService.registerUser(request);
         return new ResponseEntity<>(new ApiResponse(true, result), CREATED);
     }catch(Exception e){
-        return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), CREATED);
+        return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
     }
 
     }
