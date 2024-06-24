@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.data.repositories.UserRepository;
+import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.RegisterResponse;
 import org.example.exceptions.UsernameAlreadyExistsException;
@@ -98,5 +99,21 @@ class UserServiceImplTest {
 
         assertEquals("username", userService.findUserByUsername("username").getUsername());
 
+    }
+
+    @Test
+    public void testThatUserCanChangePassword(){
+        RegisterRequest request = new RegisterRequest();
+        request.setFirstName("Precious");
+        request.setLastName("Onome");
+        request.setUsername("username");
+        request.setPassword("password");
+        request.setEmail("precious@gmail.com");
+        request.setPhoneNumber(123);
+
+        userService.registerUser(request);
+        ChangePasswordRequest changePassword = new ChangePasswordRequest();
+
+        }
     }
 }
