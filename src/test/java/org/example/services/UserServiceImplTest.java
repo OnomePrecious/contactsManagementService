@@ -36,4 +36,29 @@ class UserServiceImplTest {
         assertNotNull(response);
         assertEquals(1, userRepository.count());
     }
+
+    @Test
+    public void testThatICanRegisterTwoUsers(){
+        RegisterRequest request = new RegisterRequest();
+        RegisterRequest request1 = new RegisterRequest();
+        request.setFirstName("Precious");
+        request.setLastName("Onome");
+        request.setUsername("username");
+        request.setPassword("password");
+        request.setEmail("precious@gmail.com");
+        request.setPhoneNumber(123);
+        request1.setFirstName("Rachel");
+        request1.setLastName("Abu");
+        request1.setUsername("username1");
+        request1.setPassword("password1");
+        request1.setEmail("precious@gmail.com");
+        request1.setPhoneNumber(321);
+
+        userService.registerUser(request);
+        userService.registerUser(request1);
+
+        assertEquals(2, userRepository.count());
+
+
+    }
 }
