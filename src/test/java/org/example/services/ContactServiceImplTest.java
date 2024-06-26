@@ -117,4 +117,6 @@ class ContactServiceImplTest {
         assertEquals("username", contactRepository.findContactByUsername("username").getUsername());
         assertEquals("Alicia", contactRepository.findContactByUsername("username").getFirstName());
     }
+
+    @Test
 }

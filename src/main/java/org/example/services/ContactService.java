@@ -9,5 +9,6 @@ public interface ContactService {
     CreateNewContactResponse createNewContact (CreateNewContactRequest request);
 
     Contact findContactByUsername (String username);
+    CreateNewContactResponse deleteContactByUsername (String username);
 
 }

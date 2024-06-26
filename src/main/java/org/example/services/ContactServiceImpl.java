@@ -6,6 +6,7 @@ import org.example.data.repositories.ContactRepository;
 import org.example.data.repositories.UserRepository;
 import org.example.dtos.request.CreateNewContactRequest;
 import org.example.dtos.response.CreateNewContactResponse;
+import org.example.exceptions.ContactNotFoundException;
 import org.example.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,4 +36,17 @@ public class ContactServiceImpl implements ContactService{
     public Contact findContactByUsername(String username) {
         return contactRepository.findContactByUsername(username);
     }
+
+    @Override
+    public CreateNewContactResponse deleteContactByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        Contact contact = contactRepository.findContactByUsername(username);
+        if(user == null) throw  new UserNotFoundException("You have to be a registered user to delete this contact");
+        if(contact == null) throw new ContactNotFoundException("No contact found");
+        contactRepository.deleteById(contact.getId());
+        contactRepository.delete(contact);
+        return mapContactToCreateNewContactResponse(contact);
+    }
+
+
 }
