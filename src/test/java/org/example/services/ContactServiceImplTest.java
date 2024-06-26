@@ -39,13 +39,13 @@ class ContactServiceImplTest {
         request.setPassword("password");
         request.setEmail("precious@gmail.com");
         request.setPhoneNumber(123);
-        var user = userService.registerUser(request);
+        userService.registerUser(request);
 
 
         CreateNewContactRequest createNewContactRequest = new CreateNewContactRequest();
         createNewContactRequest.setFirstName("Alicia");
         createNewContactRequest.setLastName("Keys");
-        createNewContactRequest.setUsername(user.getUsername());
+        createNewContactRequest.setUsername("username");
         createNewContactRequest.setPhoneNumber(1243);
         contactService.createNewContact(createNewContactRequest);
 
