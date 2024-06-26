@@ -23,27 +23,29 @@ public class UserServiceImpl implements UserService{
     public RegisterResponse registerUser(RegisterRequest request) {
         User user = new User();
         mapUserToRegisterRequest(request, user);
-        if(isValidUser(user)) userRepository.save(user);
-        else throw new UsernameAlreadyExistsException("Invalid username or password");
+        isValidUser(user);
+        user = userRepository.save(user);
         return mapUserToRegisterResponse(user);
     }
 
     @Override
     public User findUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
     @Override
     public ChangePasswordResponse changePassword(ChangePasswordRequest changePasswordRequest) {
-        User user = userRepository.findUserByUsername(changePasswordRequest.getUsername());
+        User user = userRepository.findByUsername(changePasswordRequest.getUsername());
         if(user == null) throw new UserNotFoundException("You must be a registered user");
-        mapChangePasswordRequestToUser(changePasswordRequest, user);
-        userRepository.save(user);
-        mapUserToChangePasswordResponse(user);
-        return null;
+        user.setPassword(changePasswordRequest.getNewPassword());
+//        user = mapChangePasswordRequestToUser(changePasswordRequest, user);
+        var user2 = userRepository.save(user);
+        System.out.println(user2.getPassword()+ " has been changed");
+        return mapUserToChangePasswordResponse(user2);
     }
 
-    private boolean isValidUser(User user) {
-        return userRepository.findUserByUsername(user.getUsername()) == null;
+    private void isValidUser(User user) {
+        User foundUser = userRepository.findByUsername(user.getUsername());
+        if (foundUser != null) throw new UsernameAlreadyExistsException("Invalid username or password");
     }
 }

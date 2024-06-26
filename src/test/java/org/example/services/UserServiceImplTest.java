@@ -4,7 +4,6 @@ import org.example.data.models.User;
 import org.example.data.repositories.UserRepository;
 import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.RegisterRequest;
-import org.example.dtos.response.ChangePasswordResponse;
 import org.example.dtos.response.RegisterResponse;
 import org.example.exceptions.UsernameAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
@@ -105,22 +104,29 @@ class UserServiceImplTest {
 
     @Test
     public void testThatUserCanChangePassword(){
+        userRepository.deleteAll();
         RegisterRequest request = new RegisterRequest();
         request.setFirstName("Precious");
         request.setLastName("Onome");
-        request.setUsername("username");
+        request.setUsername("username23");
         request.setPassword("password");
         request.setEmail("precious@gmail.com");
         request.setPhoneNumber(123);
         userService.registerUser(request);
+        assertEquals(1,userRepository.count());
+        User user = userRepository.findByUsername("username23");
+        assertEquals("username23", user.getUsername());
+        assertEquals("password", user.getPassword());
 
         ChangePasswordRequest changePasswordRequest = new ChangePasswordRequest();
-        changePasswordRequest.setUsername("username");
+        changePasswordRequest.setUsername("username23");
         changePasswordRequest.setPassword("password");
         changePasswordRequest.setNewPassword("newPassword");
-         userService.changePassword(changePasswordRequest);
+        userService.changePassword(changePasswordRequest);
+        assertEquals(1,userRepository.count());
 
-        assertEquals("username", userRepository.findUserByUsername("username").getUsername());
-
+        user = userRepository.findByUsername("username23");
+        assertEquals("username23", user.getUsername());
+        assertEquals("newPassword", user.getPassword());
     }
     }
