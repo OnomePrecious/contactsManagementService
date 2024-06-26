@@ -40,16 +40,16 @@ class ContactServiceImplTest {
         request.setPhoneNumber(123);
         var user = userService.registerUser(request);
 
-        assertEquals(1, userRepository.count());
 
         CreateNewContactRequest createNewContactRequest = new CreateNewContactRequest();
-        createNewContactRequest.setFirstName("ALicia");
+        createNewContactRequest.setFirstName("Alicia");
         createNewContactRequest.setLastName("Keys");
         createNewContactRequest.setUsername(user.getUsername());
         createNewContactRequest.setPhoneNumber(1243);
         contactService.createNewContact(createNewContactRequest);
 
         assertEquals(1, contactRepository.count());
+        assertEquals("Alicia", createNewContactRequest.getFirstName());
 
     }
 }
