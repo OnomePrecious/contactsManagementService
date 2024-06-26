@@ -2,6 +2,7 @@ package org.example.utils;
 
 import org.example.data.models.User;
 import org.example.dtos.request.ChangePasswordRequest;
+import org.example.dtos.request.CreateNewContactRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.ChangePasswordResponse;
 import org.example.dtos.response.RegisterResponse;
@@ -35,5 +36,13 @@ public class Mappers {
         response.setMessage("password changed successfully");
         response.setUsername(user.getUsername());
         return response;
+    }
+
+    public static User mapUserToCreateContact(CreateNewContactRequest createNewContactRequest, User user){
+        user.setFirstName(createNewContactRequest.getFirstName());
+        user.setLastName(createNewContactRequest.getLastName());
+        user.setPhoneNumber(createNewContactRequest.getPhoneNumber());
+        user.setUsername(createNewContactRequest.getUsername());
+        return user;
     }
 }
