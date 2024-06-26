@@ -3,6 +3,7 @@ package org.example.services;
 import org.example.data.repositories.ContactRepository;
 import org.example.data.repositories.UserRepository;
 import org.example.dtos.request.CreateNewContactRequest;
+import org.example.dtos.request.DeleteContactRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.RegisterResponse;
 import org.example.exceptions.UserNotFoundException;
@@ -119,4 +120,37 @@ class ContactServiceImplTest {
     }
 
     @Test
+    public void testThatUserCanDeleteContact(){
+        RegisterRequest request = new RegisterRequest();
+        request.setFirstName("Precious");
+        request.setLastName("Onome");
+        request.setUsername("username");
+        request.setPassword("password");
+        request.setEmail("precious@gmail.com");
+        request.setPhoneNumber(123);
+        userService.registerUser(request);
+
+        CreateNewContactRequest createNewContactRequest = new CreateNewContactRequest();
+        createNewContactRequest.setFirstName("Alicia");
+        createNewContactRequest.setLastName("Keys");
+        createNewContactRequest.setUsername("username");
+        createNewContactRequest.setPhoneNumber(1243);
+        createNewContactRequest.setId("1");
+        contactService.createNewContact(createNewContactRequest);
+        CreateNewContactRequest createNewContactRequest1 = new CreateNewContactRequest();
+        createNewContactRequest1.setFirstName("Bianca");
+        createNewContactRequest1.setLastName("Blanche");
+        createNewContactRequest1.setUsername("username");
+
+        createNewContactRequest1.setPhoneNumber(33451);
+        contactService.createNewContact(createNewContactRequest1);
+
+        DeleteContactRequest deleteContactRequest = new DeleteContactRequest();
+        contactService.deleteContactByUsername("username");
+
+
+
+        assertEquals(0, contactRepository.count());
+
+    }
 }

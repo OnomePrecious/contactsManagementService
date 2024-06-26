@@ -4,9 +4,11 @@ import org.example.data.models.Contact;
 import org.example.data.models.User;
 import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.CreateNewContactRequest;
+import org.example.dtos.request.DeleteContactRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.ChangePasswordResponse;
 import org.example.dtos.response.CreateNewContactResponse;
+import org.example.dtos.response.DeleteContactResponse;
 import org.example.dtos.response.RegisterResponse;
 
 public class Mappers {
@@ -51,7 +53,19 @@ public class Mappers {
     public static CreateNewContactResponse mapContactToCreateNewContactResponse(Contact contact){
         CreateNewContactResponse response = new CreateNewContactResponse();
         response.setMessage("Contact created successfully");
-        response.setUsername(contact.getUsername());
+
+        return response;
+    }
+
+    public static Contact mapDeleteContactToContact(DeleteContactRequest deleteContactRequest, Contact contact){
+        contact.setId(deleteContactRequest.getId());
+        contact.setUsername(deleteContactRequest.getUsername());
+        return contact;
+
+    }
+    public static DeleteContactResponse mapDeleteContactResponseToContact(Contact contact){
+        DeleteContactResponse response = new DeleteContactResponse();
+        response.setMessage("Contact deleted successfully");
         return response;
     }
 }
