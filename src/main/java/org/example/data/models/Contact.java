@@ -1,4 +1,4 @@
-package org.example.dtos.response;
+package org.example.data.models;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,10 +6,9 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
-
-
-public class RegisterResponse {
+public class Contact {
+    @Id
     private String id;
     private String username;
-    private String message;
+
 }
