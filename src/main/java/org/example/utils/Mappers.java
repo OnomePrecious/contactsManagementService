@@ -1,5 +1,6 @@
 package org.example.utils;
 
+import org.example.data.models.Contact;
 import org.example.data.models.User;
 import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.CreateNewContactRequest;
@@ -39,15 +40,15 @@ public class Mappers {
         return response;
     }
 
-    public static User mapUserToCreateContact(CreateNewContactRequest createNewContactRequest, User user){
-        user.setFirstName(createNewContactRequest.getFirstName());
-        user.setLastName(createNewContactRequest.getLastName());
-        user.setPhoneNumber(createNewContactRequest.getPhoneNumber());
-        user.setUsername(createNewContactRequest.getUsername());
-        return user;
+    public static Contact mapContactToNewContactRequest(CreateNewContactRequest createNewContactRequest, Contact contact){
+        contact.setFirstName(createNewContactRequest.getFirstName());
+        contact.setLastName(createNewContactRequest.getLastName());
+        contact.setPhoneNumber(createNewContactRequest.getPhoneNumber());
+        contact.setUsername(createNewContactRequest.getUsername());
+        return contact;
     }
 
-    public static void mapUserToCreateContactResponse(User user){
+    public static void mapUserToCreateContactResponse(Contact contact){
         CreateNewContactResponse response = new CreateNewContactResponse();
         response.setMessage("Contact created successfully");
         response.setUsername(user.getUsername());

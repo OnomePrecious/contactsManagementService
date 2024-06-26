@@ -10,5 +10,8 @@ public class Contact {
     @Id
     private String id;
     private String username;
+    private String firstName;
+    private String lastName;
+    private int phoneNumber;
 
 }
