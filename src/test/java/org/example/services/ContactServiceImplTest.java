@@ -137,20 +137,23 @@ class ContactServiceImplTest {
         createNewContactRequest.setPhoneNumber(1243);
         createNewContactRequest.setId("1");
         contactService.createNewContact(createNewContactRequest);
+
         CreateNewContactRequest createNewContactRequest1 = new CreateNewContactRequest();
         createNewContactRequest1.setFirstName("Bianca");
         createNewContactRequest1.setLastName("Blanche");
         createNewContactRequest1.setUsername("username");
-
+        createNewContactRequest1.setId("2");
         createNewContactRequest1.setPhoneNumber(33451);
         contactService.createNewContact(createNewContactRequest1);
 
         DeleteContactRequest deleteContactRequest = new DeleteContactRequest();
-        contactService.deleteContactByUsername("username");
+        deleteContactRequest.setUsername("username");
+        deleteContactRequest.setId("2");
+        contactService.deleteContactBy(deleteContactRequest);
 
 
 
-        assertEquals(0, contactRepository.count());
+        assertEquals(1, contactRepository.count());
 
     }
 }

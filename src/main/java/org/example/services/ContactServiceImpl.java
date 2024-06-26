@@ -8,7 +8,6 @@ import org.example.dtos.request.CreateNewContactRequest;
 import org.example.dtos.request.DeleteContactRequest;
 import org.example.dtos.response.CreateNewContactResponse;
 import org.example.dtos.response.DeleteContactResponse;
-import org.example.exceptions.ContactNotFoundException;
 import org.example.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
