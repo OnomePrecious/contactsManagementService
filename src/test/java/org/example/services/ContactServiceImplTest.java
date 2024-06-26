@@ -96,7 +96,7 @@ class ContactServiceImplTest {
     }
 
     @Test
-    public void testThatICanFindAllContactsBelongingToAUser() {
+    public void testThatICanFindContactsBelongingToAUser() {
         RegisterRequest request = new RegisterRequest();
         request.setFirstName("Precious");
         request.setLastName("Onome");
@@ -114,13 +114,7 @@ class ContactServiceImplTest {
         createNewContactRequest.setPhoneNumber(1243);
         contactService.createNewContact(createNewContactRequest);
 
-        CreateNewContactRequest createNewContactRequest1 = new CreateNewContactRequest();
-        createNewContactRequest1.setFirstName("Bianca");
-        createNewContactRequest1.setLastName("Blanche");
-        createNewContactRequest1.setUsername("username");
-
-        createNewContactRequest1.setPhoneNumber(33451);
-        contactService.createNewContact(createNewContactRequest1);
-        assertEquals()
+        assertEquals("username", contactRepository.findContactByUsername("username").getUsername());
+        assertEquals("Alicia", contactRepository.findContactByUsername("username").getFirstName());
     }
 }
