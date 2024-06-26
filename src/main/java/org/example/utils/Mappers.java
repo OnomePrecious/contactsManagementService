@@ -5,6 +5,7 @@ import org.example.dtos.request.ChangePasswordRequest;
 import org.example.dtos.request.CreateNewContactRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.ChangePasswordResponse;
+import org.example.dtos.response.CreateNewContactResponse;
 import org.example.dtos.response.RegisterResponse;
 
 public class Mappers {
@@ -44,5 +45,11 @@ public class Mappers {
         user.setPhoneNumber(createNewContactRequest.getPhoneNumber());
         user.setUsername(createNewContactRequest.getUsername());
         return user;
+    }
+
+    public static void mapUserToCreateContactResponse(User user){
+        CreateNewContactResponse response = new CreateNewContactResponse();
+        response.setMessage("Contact created successfully");
+        response.setUsername(user.getUsername());
     }
 }

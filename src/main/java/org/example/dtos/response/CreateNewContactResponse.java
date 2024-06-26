@@ -8,5 +8,6 @@ import lombok.Setter;
 
 public class CreateNewContactResponse {
     private String id;
+    private String username;
     private String message;
 }
