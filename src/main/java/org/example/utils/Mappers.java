@@ -48,9 +48,10 @@ public class Mappers {
         return contact;
     }
 
-    public static void mapUserToCreateContactResponse(Contact contact){
+    public static CreateNewContactResponse mapContactToCreateNewContactResponse(Contact contact){
         CreateNewContactResponse response = new CreateNewContactResponse();
         response.setMessage("Contact created successfully");
-        response.setUsername(user.getUsername());
+        response.setUsername(contact.getUsername());
+        return response;
     }
 }
