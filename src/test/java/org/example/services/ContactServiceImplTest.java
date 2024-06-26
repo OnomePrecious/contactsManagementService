@@ -94,4 +94,33 @@ class ContactServiceImplTest {
         assertEquals(2, contactRepository.count());
 
     }
+
+    @Test
+    public void testThatICanFindAllContactsBelongingToAUser() {
+        RegisterRequest request = new RegisterRequest();
+        request.setFirstName("Precious");
+        request.setLastName("Onome");
+        request.setUsername("username");
+        request.setPassword("password");
+        request.setEmail("precious@gmail.com");
+        request.setPhoneNumber(123);
+        userService.registerUser(request);
+
+
+        CreateNewContactRequest createNewContactRequest = new CreateNewContactRequest();
+        createNewContactRequest.setFirstName("Alicia");
+        createNewContactRequest.setLastName("Keys");
+        createNewContactRequest.setUsername("username");
+        createNewContactRequest.setPhoneNumber(1243);
+        contactService.createNewContact(createNewContactRequest);
+
+        CreateNewContactRequest createNewContactRequest1 = new CreateNewContactRequest();
+        createNewContactRequest1.setFirstName("Bianca");
+        createNewContactRequest1.setLastName("Blanche");
+        createNewContactRequest1.setUsername("username");
+
+        createNewContactRequest1.setPhoneNumber(33451);
+        contactService.createNewContact(createNewContactRequest1);
+        assertEquals()
+    }
 }

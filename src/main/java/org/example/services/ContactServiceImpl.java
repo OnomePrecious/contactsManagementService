@@ -30,4 +30,9 @@ public class ContactServiceImpl implements ContactService{
         return mapContactToCreateNewContactResponse(contact);
 
     }
+
+    @Override
+    public Contact findContactByUsername(String username) {
+        return contactRepository.findContactByUsername(username);
+    }
 }
