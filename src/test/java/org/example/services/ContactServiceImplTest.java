@@ -5,6 +5,7 @@ import org.example.data.repositories.UserRepository;
 import org.example.dtos.request.CreateNewContactRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.RegisterResponse;
+import org.example.exceptions.UserNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,15 @@ class ContactServiceImplTest {
         assertEquals(1, contactRepository.count());
         assertEquals("Alicia", createNewContactRequest.getFirstName());
 
+    }
+    @Test
+    public void test_throwsExceptionWhenITryToCreateContactWithoutRegisteringFirst(){
+        CreateNewContactRequest createNewContactRequest = new CreateNewContactRequest();
+        createNewContactRequest.setFirstName("Alicia");
+        createNewContactRequest.setLastName("Keys");
+        createNewContactRequest.setPhoneNumber(1243);
+        assertThrows(UserNotFoundException.class, () -> {
+            contactService.createNewContact(createNewContactRequest);
+        });
     }
 }
