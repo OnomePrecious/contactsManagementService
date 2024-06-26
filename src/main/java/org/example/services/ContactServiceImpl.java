@@ -17,12 +17,13 @@ import static org.example.utils.Mappers.mapContactToCreateNewContactResponse;
 public class ContactServiceImpl implements ContactService{
     @Autowired
     private UserRepository userRepository;
+    @Autowired
     private ContactRepository contactRepository;
     @Override
     public CreateNewContactResponse createNewContact(CreateNewContactRequest request) {
         Contact contact = new Contact();
         User user = userRepository.findByUsername(request.getUsername());
-        if(user == null) throw  new UserNotFoundException("You must be a registered user");
+        if(user == null) throw new UserNotFoundException("You must be a registered user");
         mapContactToNewContactRequest(request, contact);
         userRepository.save(user);
         contactRepository.save(contact);

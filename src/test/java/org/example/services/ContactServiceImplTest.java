@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.data.repositories.ContactRepository;
+import org.example.data.repositories.UserRepository;
 import org.example.dtos.request.CreateNewContactRequest;
 import org.example.dtos.request.RegisterRequest;
 import org.example.dtos.response.RegisterResponse;
@@ -15,12 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class ContactServiceImplTest {
     @Autowired
     private ContactRepository contactRepository;
+    @Autowired
     private UserService userService;
+    @Autowired
     private ContactService contactService;
+    @Autowired
+    private UserRepository userRepository;
 
     @BeforeEach
     void setUp() {
         contactRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -32,13 +38,18 @@ class ContactServiceImplTest {
         request.setPassword("password");
         request.setEmail("precious@gmail.com");
         request.setPhoneNumber(123);
-        userService.registerUser(request);
+        var user = userService.registerUser(request);
+
+        assertEquals(1, userRepository.count());
 
         CreateNewContactRequest createNewContactRequest = new CreateNewContactRequest();
         createNewContactRequest.setFirstName("ALicia");
         createNewContactRequest.setLastName("Keys");
-        createNewContactRequest.setUsername("Alike");
-        createNewContactRequest.setPhoneNumber(123);
+        createNewContactRequest.setUsername(user.getUsername());
+        createNewContactRequest.setPhoneNumber(1243);
+        contactService.createNewContact(createNewContactRequest);
+
+        assertEquals(1, contactRepository.count());
 
     }
 }
